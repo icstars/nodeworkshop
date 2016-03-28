@@ -30,7 +30,8 @@ create table if not exists trains (
 
 create role nodeuser with password '13149700' login;
 grant connect on database nodeworkshop to nodeuser;
-grant select on public.trains to nodeuser;
+grant select, insert, update on public.trains to nodeuser;
+grant usage, select on sequence trains_id_seq to nodeuser;  
 
 insert into trains (name, inService, numberOfAvailable) values ('redline 813', true, '8');
 insert into trains (name, inService, numberOfAvailable) values ('redline 912', true, '10');

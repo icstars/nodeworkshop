@@ -1,6 +1,22 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="../css/helloworld.css">
+        <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+        <script src="../js/helloworld.js"></script>
+
     </head>
-    <body>hello world from a file!!</body>
+    <body>hello world from a file!!
+        <p>Let's add trains to a database</p>
+        <form class="form-group" id="addTrainForm">
+            <div class="input"> Train Name: <input type="text" id="nameOfTrain" maxlength="100"/></div>
+            <div class="input"> In Service? <input type="checkbox" id="inService" value="In Service"/></div>
+            <div class="input"> Number of Available Cars: <input type="number" min="1" max="10" value="0"
+                                                                  id="availableTrains"/></div>
+            <div>
+                <input type="submit" class="btn btn-default"/>
+            </div>
+        </form>
+        <a href="/trainList" class="btn btn-default">Go to train page</a>
+    </body>
+    
 </html>

@@ -8,6 +8,10 @@ app.engine('html', require('ejs').renderFile);
 app.set('views', __dirname.replace('backend', 'frontend') + '/html');
 app.use(express.static(__dirname.replace('backend', 'frontend')));
 
+var bodyParser = require('body-parser');
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded({ extended: true }) );
+
 app.get('/', function(req,res){
   console.log('app / requested');
   return res.status(200).send("hello world");
@@ -25,6 +29,16 @@ app.get('/trainList', function(req,res){
   return res.render('trainList.html');
 });
 
+app.post('/addTrain', function(req,res){
+  console.log('posted to /addTrain');
+  console.log(JSON.stringify(req.body));
+  var sql = `
+   INSERT INTO trains (name,inService,numberOfAvailable) 
+   VALUES ('${req.body.nameOfTrain}', '${req.body.inService}', '${req.body.availableTrains}');
+  `;
+   database.executeQuery(sql);
+  return res.send("success");
+});
 
 app.get('/helloworld', function(req,res){
   console.log('app / helloworld requested');
